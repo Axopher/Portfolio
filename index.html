@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aman Shrestha</title>
+  <style>
+    :root {
+      /* Define your color variables here */
+      --background-gradient-start: #f5f7fa;
+      --background-gradient-end: #c3cfe2;
+      --container-bg: #ffffff;
+      --container-gradient-start: #ffffff;
+      --container-gradient-end: #f0f4f8;
+      --heading-color: #333;
+      --subheading-color: #666;
+      --link-color: #007BFF;
+      --link-hover-color: #0056b3;
+      --intro-bg: #f9f9f9;
+      --intro-border-color: #007BFF;
+      --text-color: #444;
+      --qualifications-text-color: #555;
+      --link-text-color: #fff;
+      --link-bg-color: #007BFF;
+      --link-hover-bg-color: #0056b3;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, var(--background-gradient-start), var(--background-gradient-end));
+    }
+
+    .container {
+      background-color: var(--container-bg);
+      border-radius: 15px;
+      box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+      box-sizing: border-box;
+      background: linear-gradient(145deg, var(--container-gradient-start), var(--container-gradient-end));
+    }
+
+    .content h1 {
+      margin: 0;
+      font-size: 38px;
+      color: var(--heading-color);
+      font-weight: bold;
+    }
+
+    .content h2 {
+      font-size: 22px;
+      color: var(--subheading-color);
+      margin-top: 10px;
+      font-style: italic;
+    }
+
+    .content h2 a {
+      color: var(--link-color);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .intro {
+      font-size: 18px;
+      color: var(--text-color);
+      margin: 20px 0;
+      line-height: 1.6;
+      padding: 0 20px;
+      background: var(--intro-bg);
+      border-left: 4px solid var(--intro-border-color);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .qualifications {
+      margin: 20px 0;
+    }
+
+    .qualifications p {
+      margin: 5px 0;
+      font-size: 16px;
+      color: var(--qualifications-text-color);
+      font-weight: bold;
+    }
+
+    .links {
+      margin-top: 30px;
+    }
+
+    .links a {
+      text-decoration: none;
+      color: var(--link-text-color);
+      background: var(--link-bg-color);
+      font-weight: bold;
+      margin: 10px;
+      padding: 12px 24px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      display: inline-block;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .links a:hover {
+      background: var(--link-hover-bg-color);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="content">
+      <h1>Aman Shrestha</h1>
+      <h2>Software Developer, <a href="https://tu.edu.np/" target="_blank">TU</a></h2>
+      <p class="intro">As a passionate software developer with experience in the fintech, e-commerce and SaaS, I bring a
+        unique blend
+        of technical expertise and creative innovation to the table.</p>
+
+      <div class="qualifications">
+        <p>Bachelor's Degree in Information Management</p>
+        <p>Two years of experience in Software Development</p>
+      </div>
+
+      <div class="links">
+        <a href="https://www.linkedin.com/in/aman-shrestha-117612168/" target="_blank">LinkedIn</a>
+        <a href="https://github.com/Axopher" target="_blank">GitHub</a>
+        <a href="AmanShresthaCV2024.pdf" download>Download CV</a>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
