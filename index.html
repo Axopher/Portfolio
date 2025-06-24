@@ -3,156 +3,888 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aman Shrestha</title>
+    <title>Aman's Portfolio Terminal</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Favicon using emoji -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
+      /* CSS Variables for theming */
       :root {
-        /* Define your color variables here */
-        --background-gradient-start: #f5f7fa;
-        --background-gradient-end: #c3cfe2;
-        --container-bg: #ffffff;
-        --container-gradient-start: #ffffff;
-        --container-gradient-end: #f0f4f8;
-        --heading-color: #333;
-        --subheading-color: #666;
-        --link-color: #007bff;
-        --link-hover-color: #0056b3;
-        --intro-bg: #f9f9f9;
-        --intro-border-color: #007bff;
-        --text-color: #444;
-        --qualifications-text-color: #555;
-        --link-text-color: #fff;
-        --link-bg-color: #007bff;
-        --link-hover-bg-color: #0056b3;
+        --bg-primary: #1a202c;
+        --bg-secondary: #0d1117;
+        --border-color: #1e293b;
+        --text-color: #00ff00; /* Default green */
+        --prompt-color: #00ff00;
+        --input-color: #00ff00;
+        --caret-color: #00ff00;
+        --command-input-color: #00ffff;
+        --help-heading-color: #ffff00;
+        --help-command-color: #00ff00;
+        --help-description-color: #a0aec0;
+        --error-color: #ff0000;
+        --success-color: #00ff00;
+        --info-color: #00ffff;
+        --link-color: #63b3ed; /* Tailwind blue-400 */
+        --top-icon-bg: #2d3748;
+        --top-icon-hover-bg: #4a5568;
+        --top-icon-text: #e2e8f0;
+        --encouragement-text-color: #94a3b8; /* A light gray */
+        --aman-art-color: #00ff00; /* Default green for Aman Art */
+
+        /* Fonts */
+        --font-main: "Inter", sans-serif;
+        --font-terminal: "Consolas", "Monaco", "Courier New", monospace;
       }
 
+      /* Light Mode */
+      body.light-mode {
+        --bg-primary: #e2e8f0;
+        --bg-secondary: #ffffff;
+        --border-color: #cbd5e0;
+        --text-color: #2d3748;
+        --prompt-color: #2d3748;
+        --input-color: #2d3748;
+        --caret-color: #2d3748;
+        --command-input-color: #4a5568;
+        --help-heading-color: #5a67d8;
+        --help-command-color: #2d3748;
+        --success-color: #38a169;
+        --info-color: #3182ce;
+        --link-color: #4299e1;
+        --top-icon-bg: #a0aec0;
+        --top-icon-hover-bg: #cbd5e0;
+        --top-icon-text: #2d3748;
+        --encouragement-text-color: #4a5568;
+        --aman-art-color: #5a67d8; /* Light mode color for Aman Art */
+      }
+
+      /* Red Theme */
+      body.red-theme {
+        --text-color: #ff4500; /* OrangeRed */
+        --prompt-color: #ff4500;
+        --input-color: #ff4500;
+        --caret-color: #ff4500;
+        --command-input-color: #ff7f50; /* Coral */
+        --help-heading-color: #ffa500; /* Orange */
+        --help-command-color: #ff4500;
+        --success-color: #ff4500;
+        --info-color: #ff7f50;
+        --link-color: #e76f51; /* A red-ish link */
+        --aman-art-color: #ff4500; /* Red theme color for Aman Art */
+      }
+
+      /* Blue Theme */
+      body.blue-theme {
+        --text-color: #1e90ff; /* DodgerBlue */
+        --prompt-color: #1e90ff;
+        --input-color: #1e90ff;
+        --caret-color: #1e90ff;
+        --command-input-color: #87cefa; /* LightSkyBlue */
+        --help-heading-color: #00bfff; /* DeepSkyBlue */
+        --help-command-color: #1e90ff;
+        --success-color: #1e90ff;
+        --info-color: #87cefa;
+        --link-color: #4a90e2; /* A blue-ish link */
+        --aman-art-color: #3b82f6; /* Blue theme color for Aman Art */
+      }
+
+      /* Yellow Theme */
+      body.yellow-theme {
+        --text-color: #ffd700; /* Gold */
+        --prompt-color: #ffd700;
+        --input-color: #ffd700;
+        --caret-color: #ffd700;
+        --command-input-color: #f0e68c; /* Khaki */
+        --help-heading-color: #ffb100; /* Darker Yellow */
+        --help-command-color: #ffd700;
+        --success-color: #ffd700;
+        --info-color: #f0e68c;
+        --link-color: #ffd700; /* Yellow link */
+        --aman-art-color: #ffb100; /* Yellow theme color for Aman Art */
+      }
+
+      /* General body styling for background and default font */
       body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        margin: 0;
-        padding: 0;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        font-family: var(--font-main);
         background: linear-gradient(
           135deg,
-          var(--background-gradient-start),
-          var(--background-gradient-end)
+          var(--bg-primary),
+          var(--bg-secondary)
         );
-      }
-
-      .container {
-        background-color: var(--container-bg);
-        border-radius: 15px;
-        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
-        padding: 40px;
-        max-width: 600px;
-        width: 100%;
-        text-align: center;
-        box-sizing: border-box;
-        background: linear-gradient(
-          145deg,
-          var(--container-gradient-start),
-          var(--container-gradient-end)
-        );
-      }
-
-      .content h1 {
+        color: var(--text-color);
+        display: flex;
+        flex-direction: column; /* Allow stacking top links and terminal */
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
         margin: 0;
-        font-size: 38px;
-        color: var(--heading-color);
-        font-weight: bold;
+        overflow: hidden; /* Prevent body scroll, terminal will scroll */
+        transition: background-color 0.3s ease, color 0.3s ease;
       }
 
-      .content h2 {
-        font-size: 22px;
-        color: var(--subheading-color);
-        margin-top: 10px;
-        font-style: italic;
+      /* Top Links Container */
+      .top-links {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
       }
 
-      .content h2 a {
-        color: var(--link-color);
+      .link-icon {
+        background-color: var(--top-icon-bg);
+        color: var(--top-icon-text);
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
         text-decoration: none;
         font-weight: bold;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        cursor: pointer;
+        border: 1px solid var(--border-color); /* Add a border for definition */
+        font-family: var(--font-main);
+        font-size: 0.875rem;
       }
 
-      .intro {
-        font-size: 18px;
+      .link-icon:hover {
+        background-color: var(--top-icon-hover-bg);
+        color: var(--text-color); /* Matches terminal output color on hover */
+      }
+
+      /* Container for the terminal window */
+      .terminal-container {
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 0.75rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2),
+          0 4px 6px -2px rgba(0, 0, 0, 0.1);
+        width: 95%;
+        max-width: 960px;
+        height: 80vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+        transition: background-color 0.3s ease, border-color 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      /* Terminal header bar */
+      .terminal-header {
+        background-color: var(--bg-primary);
+        padding: 0.5rem 1rem;
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        border-top-left-radius: 0.75rem;
+        border-top-right-radius: 0.75rem;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+      }
+
+      /* Traffic light buttons */
+      .dot {
+        width: 0.75rem;
+        height: 0.75rem;
+        border-radius: 9999px;
+      }
+      .red-dot {
+        background-color: #ef4444;
+      }
+      .yellow-dot {
+        background-color: #f59e0b;
+      }
+      .green-dot {
+        background-color: #22c55e;
+      }
+
+      /* Terminal title/label */
+      .terminal-title {
+        color: var(--help-description-color);
+        font-size: 0.875rem;
+        margin-left: 0.5rem;
+      }
+
+      /* Output area */
+      .terminal-output {
+        flex-grow: 1;
+        padding: 1rem;
+        overflow-y: auto;
+        font-family: var(--font-terminal);
+        font-size: 0.75rem;
+        line-height: 1.5;
         color: var(--text-color);
-        margin: 20px 0;
-        line-height: 1.6;
-        padding: 0 20px;
-        background: var(--intro-bg);
-        border-left: 4px solid var(--intro-border-color);
-        padding: 20px;
+        transition: color 0.3s ease;
+        /* For crisp text rendering */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-smooth: antialiased;
+      }
+
+      /* Encouragement message */
+      .encouragement-message {
+        padding: 0.5rem 1rem;
+        text-align: center;
+        color: var(--encouragement-text-color);
+        font-family: var(--font-main); /* Use main font for this message */
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        transition: color 0.3s ease;
+      }
+
+      /* Input area */
+      .terminal-input-container {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        border-top: 1px solid var(--border-color);
+        background-color: var(--bg-secondary);
+        border-bottom-left-radius: 0.75rem;
+        border-bottom-right-radius: 0.75rem;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+      }
+
+      .terminal-prompt {
+        color: var(--prompt-color);
+        font-family: var(--font-terminal);
+        font-size: 0.75rem;
+        margin-right: 0.5rem;
+        transition: color 0.3s ease;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-smooth: antialiased;
+      }
+
+      .terminal-input {
+        flex-grow: 1;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        color: var(--input-color);
+        font-family: var(--font-terminal);
+        font-size: 0.75rem;
+        caret-color: var(--caret-color);
+        transition: color 0.3s ease, caret-color 0.3s ease;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-smooth: antialiased;
+      }
+
+      /* Specific output styling for different commands */
+      .command-output {
+        margin-bottom: 0.5rem;
+      }
+
+      .command-input-line {
+        color: var(--command-input-color);
+        transition: color 0.3s ease;
+      }
+
+      .help-heading {
+        color: var(--help-heading-color);
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+        transition: color 0.3s ease;
+      }
+
+      .help-command {
+        color: var(--help-command-color);
+        display: inline-block;
+        width: 120px;
+        transition: color 0.3s ease;
+      }
+
+      .help-description {
+        color: var(--help-description-color);
+        transition: color 0.3s ease;
+      }
+
+      .error-message {
+        color: var(--error-color);
+        transition: color 0.3s ease;
+      }
+
+      .success-message {
+        color: var(--success-color);
+        transition: color 0.3s ease;
+      }
+
+      .info-message {
+        color: var(--info-color);
+        transition: color 0.3s ease;
+      }
+
+      .link-style {
+        color: var(--link-color);
+      }
+
+      /* Custom scrollbar for terminal output */
+      .terminal-output::-webkit-scrollbar {
+        width: 8px;
+      }
+      .terminal-output::-webkit-scrollbar-track {
+        background: var(--bg-primary);
         border-radius: 10px;
       }
-
-      .qualifications {
-        margin: 20px 0;
+      .terminal-output::-webkit-scrollbar-thumb {
+        background: #38a169; /* Keep a consistent scrollbar thumb color */
+        border-radius: 10px;
+      }
+      .terminal-output::-webkit-scrollbar-thumb:hover {
+        background: #2f855a;
       }
 
-      .qualifications p {
-        margin: 5px 0;
-        font-size: 16px;
-        color: var(--qualifications-text-color);
-        font-weight: bold;
+      /* Flashing cursor */
+      @keyframes blink-caret {
+        from,
+        to {
+          border-right-color: transparent;
+        }
+        50% {
+          border-right-color: var(--caret-color);
+        }
       }
 
-      .links {
-        margin-top: 30px;
-      }
-
-      .links a {
-        text-decoration: none;
-        color: var(--link-text-color);
-        background: var(--link-bg-color);
-        font-weight: bold;
-        margin: 10px;
-        padding: 12px 24px;
-        border-radius: 25px;
-        transition: all 0.3s ease;
+      .typing-effect::after {
+        content: "|";
         display: inline-block;
-        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        animation: blink-caret 0.75s step-end infinite;
+        margin-left: 2px;
       }
 
-      .links a:hover {
-        background: var(--link-hover-bg-color);
-        transform: translateY(-2px);
+      /* Small screen adjustments */
+      @media (max-width: 768px) {
+        .terminal-container {
+          width: 98%;
+          height: 80vh; /* Adjusted for top links & encouragement msg */
+        }
+        .terminal-output,
+        .terminal-input,
+        .terminal-prompt {
+          font-size: 0.55rem; /* Slightly smaller for mobile */
+        }
+        .terminal-header {
+          padding: 0.4rem 0.75rem;
+        }
+        .dot {
+          width: 0.6rem;
+          height: 0.6rem;
+        }
+        .top-links {
+          gap: 0.5rem;
+          margin-bottom: 0.75rem;
+        }
+        .link-icon {
+          padding: 0.4rem 0.8rem;
+          font-size: 0.75rem;
+        }
+        .encouragement-message {
+          font-size: 0.7rem;
+          padding: 0.4rem 0.75rem;
+        }
       }
     </style>
   </head>
-
   <body>
-    <div class="container">
-      <div class="content">
-        <h1>Aman Shrestha</h1>
-        <h2>
-          Backend Developer, <a href="https://tu.edu.np/" target="_blank">TU</a>
-        </h2>
-        <p class="intro">
-          A Backend Developer with 2+ years of experience and specialization in
-          crafting robust APIs, Third-Party Integrations, Database Management,
-          Web Scraping, Automation and Optimizing Backend Systems while
-          enhancing scalability and security, and fostering collaborative
-          teamwork to drive innovative solutions.
-        </p>
+    <div class="top-links">
+      <a
+        href="https://github.com/axopher"
+        target="_blank"
+        class="link-icon github"
+        >GitHub</a
+      >
+      <a
+        href="https://www.linkedin.com/in/aman-shrestha-117612168/"
+        target="_blank"
+        class="link-icon linkedin"
+        >LinkedIn</a
+      >
+      <a href="AMANSHRESTHACV.pdf" target="_blank" class="link-icon cv">CV</a>
+    </div>
 
-        <div class="qualifications">
-          <p>Bachelor's Degree in Information Management</p>
-          <p>2+ years of experience in Software Development</p>
-        </div>
-
-        <div class="links">
-          <a
-            href="https://www.linkedin.com/in/aman-shrestha-117612168/"
-            target="_blank"
-            >LinkedIn</a
-          >
-          <a href="https://github.com/Axopher" target="_blank">GitHub</a>
-          <a href="AMANSHRESTHACV2025.pdf" download>Download CV</a>
-        </div>
+    <div class="terminal-container">
+      <div class="terminal-header">
+        <div class="dot red-dot"></div>
+        <div class="dot yellow-dot"></div>
+        <div class="dot green-dot"></div>
+        <span class="terminal-title">aman-os@v1.0</span>
+      </div>
+      <div class="terminal-output" id="terminalOutput"></div>
+      <div class="encouragement-message">
+        Type commands below to explore AmanOS and uncover more about me!
+      </div>
+      <div class="terminal-input-container">
+        <span class="terminal-prompt">></span>
+        <input
+          type="text"
+          id="terminalInput"
+          class="terminal-input"
+          autofocus
+        />
       </div>
     </div>
+
+    <script>
+      const terminalInput = document.getElementById("terminalInput");
+      const terminalOutput = document.getElementById("terminalOutput");
+      const body = document.body;
+      let currentTheme = "dark"; // Default theme
+
+      // Autoscroll to bottom
+      function autoScroll() {
+        terminalOutput.scrollTop = terminalOutput.scrollHeight;
+      }
+
+      // Function to append a line to the terminal output
+      function appendToOutput(text, className = "") {
+        const line = document.createElement("div");
+        line.classList.add("command-output");
+        if (className) {
+          line.classList.add(className);
+        }
+        line.innerHTML = text; // Use innerHTML to allow for colored spans and links
+        terminalOutput.appendChild(line);
+        autoScroll();
+      }
+
+      // Simulate typing effect for initial welcome messages
+      function typeWriter(text, targetElement, speed = 30, callback = null) {
+        let i = 0;
+        const tempSpan = document.createElement("span");
+        // Check if targetElement has children, if not, append tempSpan directly
+        if (targetElement.children.length === 0) {
+          targetElement.appendChild(tempSpan);
+        } else {
+          // If it has children, append to the last child's innerHTML or create a new span
+          // For multiline typing into one div, we'll just append text content
+          // to a new span within the same div for simplicity.
+          targetElement.appendChild(tempSpan);
+        }
+
+        targetElement.classList.add("typing-effect");
+        const interval = setInterval(() => {
+          if (i < text.length) {
+            tempSpan.textContent += text.charAt(i);
+            i++;
+            autoScroll();
+          } else {
+            clearInterval(interval);
+            targetElement.classList.remove("typing-effect");
+            if (callback) callback();
+          }
+        }, speed);
+      }
+
+      // Function to set the theme
+      function setTheme(themeName) {
+        body.classList.remove(
+          "light-mode",
+          "red-theme",
+          "blue-theme",
+          "yellow-theme"
+        ); // Remove all specific themes
+        if (themeName !== "dark") {
+          // Only add if not default dark
+          body.classList.add(themeName + "-theme");
+        }
+        if (themeName === "light") {
+          // Special case for light mode
+          body.classList.add("light-mode");
+        }
+        currentTheme = themeName;
+        appendToOutput(
+          `<span class="success-message">> Theme set to '${themeName}'.</span>`
+        );
+      }
+
+      // Function to display a concise help summary
+      function displayInitialHelpSummary() {
+        appendToOutput(
+          '<div class="help-heading">=== COMMON COMMANDS ===</div>'
+        );
+        appendToOutput(
+          '<span class="help-command">whoami</span><span class="help-description">About me</span>'
+        );
+        appendToOutput(
+          '<span class="help-command">skills</span><span class="help-description">My tech stack</span>'
+        );
+        appendToOutput(
+          '<span class="help-command">contact</span><span class="help-description">Connect with me</span>'
+        );
+        appendToOutput(
+          '<span class="help-command">cv</span><span class="help-description">My Resume</span>'
+        );
+        appendToOutput(
+          '<span class="help-command">theme &lt;mode&gt;</span><span class="help-description">Change colors (dark, light, red, blue, yellow)</span>'
+        );
+        appendToOutput(
+          '<span class="help-command">clear</span><span class="help-description">Clear screen</span>'
+        );
+        appendToOutput("<br>");
+        // Removed: appendToOutput('<span class="info-message">Type \'help\' for a complete list of commands.</span>');
+      }
+
+      // Available commands and their descriptions/actions
+      const commands = {
+        help: {
+          description: "Show this help message",
+          action: () => {
+            appendToOutput(
+              '<div class="help-heading">=== AVAILABLE COMMANDS ===</div>'
+            );
+            appendToOutput(
+              '<span class="help-command">help</span><span class="help-description">Show this help message</span>'
+            );
+            appendToOutput(
+              '<span class="help-command">clear</span><span class="help-description">Clear the terminal screen</span>'
+            );
+            appendToOutput(
+              '<span class="help-command">exit</span><span class="help-description">Simulate exiting AmanOS</span>'
+            );
+            appendToOutput(
+              '<span class="help-command">echo &lt;text&gt;</span><span class="help-description">Display the provided text</span>'
+            );
+            appendToOutput(
+              '<span class="help-command">date</span><span class="help-description">Show current date and time</span>'
+            );
+            appendToOutput(
+              '<span class="help-command">theme &lt;mode&gt;</span><span class="help-description">Change terminal theme (dark, light, red, blue, yellow)</span>'
+            );
+            appendToOutput(
+              '<span class="help-command">whoami</span><span class="help-description">Display information about Aman</span>'
+            );
+            appendToOutput(
+              '<span class="help-command">skills</span><span class="help-description">List Aman\'s technical skills</span>'
+            );
+            appendToOutput(
+              '<span class="help-command">contact</span><span class="help-description">Get Aman\'s contact details</span>'
+            );
+            appendToOutput(
+              '<span class="help-command">cv</span><span class="help-description">Browse Aman\'s Curriculum Vitae</span>'
+            );
+            appendToOutput(
+              '<span class="help-command">linkedin</span><span class="help-description">Open Aman\'s LinkedIn profile</span>'
+            );
+            appendToOutput(
+              '<span class="help-command">github</span><span class="help-description">Open Aman\'s GitHub profile</span>'
+            );
+
+            appendToOutput(
+              '<span class="help-command">quote</span><span class="help-description">Display a random cookie message (simulated)</span>'
+            );
+            appendToOutput(
+              '<div class="help-heading">Tip: Try some undocumented commands - there might be easter eggs!</div>'
+            );
+          },
+        },
+        clear: {
+          description: "Clear the terminal screen",
+          action: () => {
+            terminalOutput.innerHTML = "";
+            appendToOutput(
+              '<span class="terminal-prompt">></span> Terminal cleared.',
+              "success-message"
+            );
+          },
+        },
+        exit: {
+          description: "Simulate exiting terminal mode",
+          action: () => {
+            appendToOutput(
+              '<span class="terminal-prompt">></span> <span class="info-message">Exiting AmanOS. This is a simulation; in a real application, you might transition to a graphical user interface here.</span>'
+            );
+            // In a real app, you might hide the terminal and show a graphical UI
+          },
+        },
+        echo: {
+          description: "Display the provided text",
+          action: (args) => {
+            if (args.length > 0) {
+              appendToOutput(
+                `<span class="info-message">${args.join(" ")}</span>`
+              );
+            } else {
+              appendToOutput(
+                '<span class="error-message">Usage: echo &lt;text&gt;</span>'
+              );
+            }
+          },
+        },
+        date: {
+          description: "Show current date and time",
+          action: () => {
+            const now = new Date();
+            appendToOutput(
+              `<span class="info-message">Current Date & Time: ${now.toLocaleString()}</span>`
+            );
+          },
+        },
+        theme: {
+          description: "Change terminal theme (dark, light, red, blue, yellow)",
+          action: (args) => {
+            const themeMode = args[0] ? args[0].toLowerCase() : "";
+            const validThemes = ["dark", "light", "red", "blue", "yellow"];
+            if (validThemes.includes(themeMode)) {
+              setTheme(themeMode);
+            } else {
+              appendToOutput(
+                '<span class="error-message">Invalid theme. Available themes: dark, light, red, blue, yellow.</span>'
+              );
+              appendToOutput(
+                '<span class="error-message">Usage: theme &lt;mode&gt;</span>'
+              );
+            }
+          },
+        },
+        whoami: {
+          description: "Display information about Aman",
+          action: () => {
+            appendToOutput(
+              '<span class="terminal-prompt">></span> <span class="info-message">Retrieving profile information...</span>'
+            );
+            setTimeout(() => {
+              appendToOutput(`
+                            <span class="info-message">
+                            A Backend Developer with 2+ years of experience and specialization in
+                            crafting robust APIs, Third-Party Integrations, Database Management,
+                            Web Scraping, Automation and Optimizing Backend Systems while
+                            enhancing scalability and security, and fostering collaborative
+                            teamwork to drive innovative solutions.
+                            </span>
+                        `);
+            }, 500);
+          },
+        },
+        skills: {
+          description: "List Aman's technical skills.",
+          action: () => {
+            // Define skills in a structured way
+            const skillSet = {
+              Backend: "Python, Django and FastAPI",
+              Frontend: "React, JavaScript and TailwindCSS",
+              Databases: "PostgreSQL, Redis and MongoDB",
+              "DevOps & Tools": "Docker, AWS, Nginx, Git/GitHub",
+              Others:
+                "Web Scraping, Automation, REST APIs, OAuth, AI Integration, etc.",
+            };
+
+            let output =
+              '<div class="help-heading">--- Technical Skillset ---</div>';
+
+            // Loop through the structured skills and format them
+            for (const category in skillSet) {
+              // Re-use the 'help-command' and 'help-description' classes for nice alignment
+              output += `<div><span class="help-command" style="width: 140px;">${category}</span><span class="help-description">${skillSet[category]}</span></div>`;
+            }
+
+            appendToOutput(output);
+          },
+        },
+        contact: {
+          description: "Get Aman's contact details",
+          action: () => {
+            appendToOutput(
+              '<span class="terminal-prompt">></span> <span class="info-message">Displaying contact details for Aman...</span>'
+            );
+            setTimeout(() => {
+              appendToOutput(
+                '<span class="info-message">Email:</span> <a href="mailto:amanshres007@gmail.com" class="link-style">amanshres007@gmail.com</a>'
+              );
+              appendToOutput(
+                '<span class="info-message">LinkedIn:</span> <a href="https://www.linkedin.com/in/aman-shrestha-117612168/" class="link-style" target="_blank">https://www.linkedin.com/in/aman-shrestha-117612168/</a>'
+              );
+              appendToOutput(
+                '<span class="info-message">GitHub:</span> <a href="https://github.com/axopher" class="link-style" target="_blank">https://github.com/axopher</a>'
+              );
+              appendToOutput(
+                '<span class="info-message">CV:</span> Type <span class="command-input-line">cv</span> or click the "CV" icon above.'
+              );
+            }, 500);
+          },
+        },
+        cv: {
+          description: "Browse Aman's Curriculum Vitae",
+          action: () => {
+            appendToOutput(
+              '<span class="terminal-prompt">></span> <span class="info-message">Browse Aman\'s CV (simulated)...</span>'
+            );
+          },
+          action: () => {
+            appendToOutput(
+              '<span class="terminal-prompt">></span> <span class="info-message">Browse Aman\'s CV (simulated)...</span>'
+            );
+            setTimeout(() => {
+              appendToOutput(
+                '<span class="success-message">Redirecting to <a href="AMANSHRESTHACV.pdf" class="link-style" target="_blank">AMANSHRESTHACV.pdf</a>.</span>'
+              );
+              window.open("AMANSHRESTHACV.pdf", "_blank"); // Open in new tab
+            }, 500);
+          },
+        },
+        linkedin: {
+          description: "Open Aman's LinkedIn profile",
+          action: () => {
+            appendToOutput(
+              '<span class="terminal-prompt">></span> <span class="info-message">Opening Aman\'s LinkedIn profile...</span>'
+            );
+            setTimeout(() => {
+              appendToOutput(
+                '<span class="success-message">Redirecting to <a href="https://linkedin.com/in/aman_devops" class="link-style" target="_blank">https://linkedin.com/in/aman_devops</a>.</span>'
+              );
+              window.open("https://linkedin.com/in/aman_devops", "_blank"); // Open in new tab
+            }, 500);
+          },
+        },
+        github: {
+          description: "Open Aman's GitHub profile",
+          action: () => {
+            appendToOutput(
+              '<span class="terminal-prompt">></span> <span class="info-message">Opening Aman\'s GitHub profile...</span>'
+            );
+            setTimeout(() => {
+              appendToOutput(
+                '<span class="success-message">Redirecting to <a href="https://github.com/aman-devops" class="link-style" target="_blank">https://github.com/aman-devops</a>.</span>'
+              );
+              window.open("https://github.com/aman-devops", "_blank"); // Open in new tab
+            }, 500);
+          },
+        },
+        quote: {
+          description: "Display a random quote of the day",
+          action: () => {
+            const quotes = [
+              "The only way to do great work is to love what you do. - Steve Jobs",
+              "Any fool can write code that a computer can understand. Good programmers write code that humans can understand. - Martin Fowler",
+              "Measuring programming progress by lines of code is like measuring aircraft building progress by weight. - Bill Gates",
+              "The most disastrous thing that can happen to a programmer is to fall in love with his own code. - Anonymous",
+              "Before software can be reusable, it first has to be usable. - Ralph Johnson",
+              "In order to understand recursion, one must first understand recursion. - Anonymous",
+              "It's not a bug – it's an undocumented feature. - Anonymous",
+              "There are only 10 types of people in the world: those who understand binary, and those who don’t. - Anonymous",
+            ];
+            const randomQuote =
+              quotes[Math.floor(Math.random() * quotes.length)];
+            appendToOutput(
+              `<span class="info-message">"${randomQuote}"</span>`
+            );
+          },
+        },
+        sudo: {
+          description: "Attempt to gain superuser privileges (fails)",
+          action: () => {
+            const accessDeniedArt = `
+<pre style="color: red; margin: 0 auto; text-align: center; font-size: 1.2em; line-height: 1;">
+ PERMISSION DENIED
+</pre>
+                    `;
+            appendToOutput(accessDeniedArt);
+            appendToOutput(
+              '<span class="error-message">Access Denied. Did you really think it would be that easy?</span>'
+            );
+            appendToOutput(
+              '<span class="error-message">This incident will be reported to the sysadmin (me). Expect a stern look and maybe a rubber duck debugging session.</span>'
+            );
+          },
+        },
+      };
+
+      // Handle input from the terminal
+      terminalInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          const fullCommand = terminalInput.value.trim();
+          const parts = fullCommand.split(" ");
+          const command = parts[0].toLowerCase();
+          const args = parts.slice(1);
+
+          appendToOutput(
+            `<span class="terminal-prompt">></span> <span class="command-input-line">${fullCommand}</span>`
+          );
+          terminalInput.value = ""; // Clear input
+
+          if (commands[command]) {
+            commands[command].action(args);
+          } else if (command === "") {
+            // Do nothing if command is empty
+          } else {
+            appendToOutput(
+              `<span class="error-message">Command not found: '${command}'. Type 'help' for a list of commands.</span>`
+            );
+          }
+          autoScroll();
+        }
+      });
+
+      // Initial welcome message with typing effect
+      window.onload = function () {
+        terminalOutput.innerHTML = ""; // Clear initial static content
+
+        // AMAN ASCII Art
+        const amanArt = `
+<pre style="color: var(--aman-art-color); margin: 0 auto; text-align: center; font-size: 1.2em; line-height: 1.2;">
+  █████╗ ███╗   ███╗ █████╗ ███╗   ██╗
+ ██╔══██╗████╗ ████║██╔══██╗████╗  ██║
+ ███████║██╔████╔██║███████║██╔██╗ ██║
+ ██╔══██║██║╚██╔╝██║██╔══██║██║╚██╗██║
+ ██║  ██║██║ ╚═╝ ██║██║  ██║██║ ╚████║
+ ╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝
+                               <span style="color: white; font-weight: bold;">AmanOS Terminal v2.1.0</span>
+</pre>
+            `;
+
+        appendToOutput(amanArt);
+        appendToOutput("<br>"); // Add a line break after ASCII art
+
+        // Welcome message lines
+        const welcomeLines = [
+          "Initializing AmanOS v2.1.0...",
+          "Boot sequence complete. All systems online.",
+          "Loading user profile: Aman Shrestha [Software Engineer | Cloud Enthusiast]",
+          "Welcome, Operator. Your terminal awaits. Type 'help' to explore available commands.",
+        ];
+
+        let lineIndex = 0;
+        const typeNextLine = () => {
+          if (lineIndex < welcomeLines.length) {
+            const welcomeLineDiv = document.createElement("div");
+            welcomeLineDiv.classList.add("command-output");
+            terminalOutput.appendChild(welcomeLineDiv);
+            typeWriter(welcomeLines[lineIndex], welcomeLineDiv, 30, () => {
+              lineIndex++;
+              typeNextLine();
+            });
+          } else {
+            // All welcome lines typed, now display concise help summary
+            displayInitialHelpSummary();
+            // Finally, add the prompt and focus input
+            const finalPromptDiv = document.createElement("div");
+            finalPromptDiv.classList.add("command-output");
+            const finalPromptSpan = document.createElement("span");
+            finalPromptSpan.classList.add("terminal-prompt");
+            finalPromptSpan.textContent = ">";
+            finalPromptDiv.appendChild(finalPromptSpan);
+            terminalOutput.appendChild(finalPromptDiv);
+            terminalInput.focus(); // Focus input after all typing animation
+          }
+        };
+
+        // Start typing welcome messages after a small delay
+        setTimeout(typeNextLine, 500);
+
+        // Re-focus input field if user clicks elsewhere
+        document.addEventListener("click", (e) => {
+          if (
+            !terminalInput.contains(e.target) &&
+            !terminalOutput.contains(e.target)
+          ) {
+            terminalInput.focus();
+          }
+        });
+      };
+    </script>
   </body>
 </html>
