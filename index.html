@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aman's Portfolio Terminal</title>
+    <title>AmanOS v2.1.0</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
       rel="stylesheet"
@@ -11,384 +11,10 @@
     <!-- Favicon using emoji -->
     <link
       rel="icon"
-      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>"
     />
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      /* CSS Variables for theming */
-      :root {
-        --bg-primary: #1a202c;
-        --bg-secondary: #0d1117;
-        --border-color: #1e293b;
-        --text-color: #00ff00; /* Default green */
-        --prompt-color: #00ff00;
-        --input-color: #00ff00;
-        --caret-color: #00ff00;
-        --command-input-color: #00ffff;
-        --help-heading-color: #ffff00;
-        --help-command-color: #00ff00;
-        --help-description-color: #a0aec0;
-        --error-color: #ff0000;
-        --success-color: #00ff00;
-        --info-color: #00ffff;
-        --link-color: #63b3ed; /* Tailwind blue-400 */
-        --top-icon-bg: #2d3748;
-        --top-icon-hover-bg: #4a5568;
-        --top-icon-text: #e2e8f0;
-        --encouragement-text-color: #94a3b8; /* A light gray */
-        --aman-art-color: #00ff00; /* Default green for Aman Art */
-
-        /* Fonts */
-        --font-main: "Inter", sans-serif;
-        --font-terminal: "Consolas", "Monaco", "Courier New", monospace;
-      }
-
-      /* Light Mode */
-      body.light-mode {
-        --bg-primary: #e2e8f0;
-        --bg-secondary: #ffffff;
-        --border-color: #cbd5e0;
-        --text-color: #2d3748;
-        --prompt-color: #2d3748;
-        --input-color: #2d3748;
-        --caret-color: #2d3748;
-        --command-input-color: #4a5568;
-        --help-heading-color: #5a67d8;
-        --help-command-color: #2d3748;
-        --success-color: #38a169;
-        --info-color: #3182ce;
-        --link-color: #4299e1;
-        --top-icon-bg: #a0aec0;
-        --top-icon-hover-bg: #cbd5e0;
-        --top-icon-text: #2d3748;
-        --encouragement-text-color: #4a5568;
-        --aman-art-color: #5a67d8; /* Light mode color for Aman Art */
-      }
-
-      /* Red Theme */
-      body.red-theme {
-        --text-color: #ff4500; /* OrangeRed */
-        --prompt-color: #ff4500;
-        --input-color: #ff4500;
-        --caret-color: #ff4500;
-        --command-input-color: #ff7f50; /* Coral */
-        --help-heading-color: #ffa500; /* Orange */
-        --help-command-color: #ff4500;
-        --success-color: #ff4500;
-        --info-color: #ff7f50;
-        --link-color: #e76f51; /* A red-ish link */
-        --aman-art-color: #ff4500; /* Red theme color for Aman Art */
-      }
-
-      /* Blue Theme */
-      body.blue-theme {
-        --text-color: #1e90ff; /* DodgerBlue */
-        --prompt-color: #1e90ff;
-        --input-color: #1e90ff;
-        --caret-color: #1e90ff;
-        --command-input-color: #87cefa; /* LightSkyBlue */
-        --help-heading-color: #00bfff; /* DeepSkyBlue */
-        --help-command-color: #1e90ff;
-        --success-color: #1e90ff;
-        --info-color: #87cefa;
-        --link-color: #4a90e2; /* A blue-ish link */
-        --aman-art-color: #3b82f6; /* Blue theme color for Aman Art */
-      }
-
-      /* Yellow Theme */
-      body.yellow-theme {
-        --text-color: #ffd700; /* Gold */
-        --prompt-color: #ffd700;
-        --input-color: #ffd700;
-        --caret-color: #ffd700;
-        --command-input-color: #f0e68c; /* Khaki */
-        --help-heading-color: #ffb100; /* Darker Yellow */
-        --help-command-color: #ffd700;
-        --success-color: #ffd700;
-        --info-color: #f0e68c;
-        --link-color: #ffd700; /* Yellow link */
-        --aman-art-color: #ffb100; /* Yellow theme color for Aman Art */
-      }
-
-      /* General body styling for background and default font */
-      body {
-        font-family: var(--font-main);
-        background: linear-gradient(
-          135deg,
-          var(--bg-primary),
-          var(--bg-secondary)
-        );
-        color: var(--text-color);
-        display: flex;
-        flex-direction: column; /* Allow stacking top links and terminal */
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-        overflow: hidden; /* Prevent body scroll, terminal will scroll */
-        transition: background-color 0.3s ease, color 0.3s ease;
-      }
-
-      /* Top Links Container */
-      .top-links {
-        display: flex;
-        gap: 1rem;
-        margin-bottom: 1rem;
-      }
-
-      .link-icon {
-        background-color: var(--top-icon-bg);
-        color: var(--top-icon-text);
-        padding: 0.5rem 1rem;
-        border-radius: 0.5rem;
-        text-decoration: none;
-        font-weight: bold;
-        transition: background-color 0.3s ease, color 0.3s ease;
-        cursor: pointer;
-        border: 1px solid var(--border-color); /* Add a border for definition */
-        font-family: var(--font-main);
-        font-size: 0.875rem;
-      }
-
-      .link-icon:hover {
-        background-color: var(--top-icon-hover-bg);
-        color: var(--text-color); /* Matches terminal output color on hover */
-      }
-
-      /* Container for the terminal window */
-      .terminal-container {
-        background-color: var(--bg-secondary);
-        border: 1px solid var(--border-color);
-        border-radius: 0.75rem;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2),
-          0 4px 6px -2px rgba(0, 0, 0, 0.1);
-        width: 95%;
-        max-width: 960px;
-        height: 80vh;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        position: relative;
-        transition: background-color 0.3s ease, border-color 0.3s ease,
-          box-shadow 0.3s ease;
-      }
-
-      /* Terminal header bar */
-      .terminal-header {
-        background-color: var(--bg-primary);
-        padding: 0.5rem 1rem;
-        border-bottom: 1px solid var(--border-color);
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        border-top-left-radius: 0.75rem;
-        border-top-right-radius: 0.75rem;
-        transition: background-color 0.3s ease, border-color 0.3s ease;
-      }
-
-      /* Traffic light buttons */
-      .dot {
-        width: 0.75rem;
-        height: 0.75rem;
-        border-radius: 9999px;
-      }
-      .red-dot {
-        background-color: #ef4444;
-      }
-      .yellow-dot {
-        background-color: #f59e0b;
-      }
-      .green-dot {
-        background-color: #22c55e;
-      }
-
-      /* Terminal title/label */
-      .terminal-title {
-        color: var(--help-description-color);
-        font-size: 0.875rem;
-        margin-left: 0.5rem;
-      }
-
-      /* Output area */
-      .terminal-output {
-        flex-grow: 1;
-        padding: 1rem;
-        overflow-y: auto;
-        font-family: var(--font-terminal);
-        font-size: 0.75rem;
-        line-height: 1.5;
-        color: var(--text-color);
-        transition: color 0.3s ease;
-        /* For crisp text rendering */
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        font-smooth: antialiased;
-      }
-
-      /* Encouragement message */
-      .encouragement-message {
-        padding: 0.5rem 1rem;
-        text-align: center;
-        color: var(--encouragement-text-color);
-        font-family: var(--font-main); /* Use main font for this message */
-        font-size: 0.8rem;
-        margin-top: 0.5rem;
-        margin-bottom: 0.5rem;
-        transition: color 0.3s ease;
-      }
-
-      /* Input area */
-      .terminal-input-container {
-        display: flex;
-        align-items: center;
-        padding: 1rem;
-        border-top: 1px solid var(--border-color);
-        background-color: var(--bg-secondary);
-        border-bottom-left-radius: 0.75rem;
-        border-bottom-right-radius: 0.75rem;
-        transition: background-color 0.3s ease, border-color 0.3s ease;
-      }
-
-      .terminal-prompt {
-        color: var(--prompt-color);
-        font-family: var(--font-terminal);
-        font-size: 0.75rem;
-        margin-right: 0.5rem;
-        transition: color 0.3s ease;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        font-smooth: antialiased;
-      }
-
-      .terminal-input {
-        flex-grow: 1;
-        background-color: transparent;
-        border: none;
-        outline: none;
-        color: var(--input-color);
-        font-family: var(--font-terminal);
-        font-size: 0.75rem;
-        caret-color: var(--caret-color);
-        transition: color 0.3s ease, caret-color 0.3s ease;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        font-smooth: antialiased;
-      }
-
-      /* Specific output styling for different commands */
-      .command-output {
-        margin-bottom: 0.5rem;
-      }
-
-      .command-input-line {
-        color: var(--command-input-color);
-        transition: color 0.3s ease;
-      }
-
-      .help-heading {
-        color: var(--help-heading-color);
-        margin-top: 1rem;
-        margin-bottom: 0.5rem;
-        transition: color 0.3s ease;
-      }
-
-      .help-command {
-        color: var(--help-command-color);
-        display: inline-block;
-        width: 120px;
-        transition: color 0.3s ease;
-      }
-
-      .help-description {
-        color: var(--help-description-color);
-        transition: color 0.3s ease;
-      }
-
-      .error-message {
-        color: var(--error-color);
-        transition: color 0.3s ease;
-      }
-
-      .success-message {
-        color: var(--success-color);
-        transition: color 0.3s ease;
-      }
-
-      .info-message {
-        color: var(--info-color);
-        transition: color 0.3s ease;
-      }
-
-      .link-style {
-        color: var(--link-color);
-      }
-
-      /* Custom scrollbar for terminal output */
-      .terminal-output::-webkit-scrollbar {
-        width: 8px;
-      }
-      .terminal-output::-webkit-scrollbar-track {
-        background: var(--bg-primary);
-        border-radius: 10px;
-      }
-      .terminal-output::-webkit-scrollbar-thumb {
-        background: #38a169; /* Keep a consistent scrollbar thumb color */
-        border-radius: 10px;
-      }
-      .terminal-output::-webkit-scrollbar-thumb:hover {
-        background: #2f855a;
-      }
-
-      /* Flashing cursor */
-      @keyframes blink-caret {
-        from,
-        to {
-          border-right-color: transparent;
-        }
-        50% {
-          border-right-color: var(--caret-color);
-        }
-      }
-
-      .typing-effect::after {
-        content: "|";
-        display: inline-block;
-        animation: blink-caret 0.75s step-end infinite;
-        margin-left: 2px;
-      }
-
-      /* Small screen adjustments */
-      @media (max-width: 768px) {
-        .terminal-container {
-          width: 98%;
-          height: 80vh; /* Adjusted for top links & encouragement msg */
-        }
-        .terminal-output,
-        .terminal-input,
-        .terminal-prompt {
-          font-size: 0.55rem; /* Slightly smaller for mobile */
-        }
-        .terminal-header {
-          padding: 0.4rem 0.75rem;
-        }
-        .dot {
-          width: 0.6rem;
-          height: 0.6rem;
-        }
-        .top-links {
-          gap: 0.5rem;
-          margin-bottom: 0.75rem;
-        }
-        .link-icon {
-          padding: 0.4rem 0.8rem;
-          font-size: 0.75rem;
-        }
-        .encouragement-message {
-          font-size: 0.7rem;
-          padding: 0.4rem 0.75rem;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="top-links">
@@ -425,6 +51,7 @@
           id="terminalInput"
           class="terminal-input"
           autofocus
+          disabled
         />
       </div>
     </div>
@@ -778,16 +405,20 @@
           description: "Attempt to gain superuser privileges (fails)",
           action: () => {
             const accessDeniedArt = `
-<pre style="color: red; margin: 0 auto; text-align: center; font-size: 1.2em; line-height: 1;">
- PERMISSION DENIED
+<pre style="color: #ef4444; margin: 0 auto; text-align: center; font-size: 1.1em; line-height: 1.3;">
+  ╔════════════════════════════╗
+  ║     🔒 ACCESS DENIED 🔒     ║
+  ╚════════════════════════════╝
+    You need higher clearance.
+     Try again… with coffee ☕
 </pre>
-                    `;
+    `;
             appendToOutput(accessDeniedArt);
             appendToOutput(
-              '<span class="error-message">Access Denied. Did you really think it would be that easy?</span>'
+              '<span class="error-message">Permission denied. Not everyone gets to be root.</span>'
             );
             appendToOutput(
-              '<span class="error-message">This incident will be reported to the sysadmin (me). Expect a stern look and maybe a rubber duck debugging session.</span>'
+              '<span class="error-message">Nice try, but sudo doesn’t mean "super-duper-open".</span>'
             );
           },
         },
@@ -843,7 +474,7 @@
         const welcomeLines = [
           "Initializing AmanOS v2.1.0...",
           "Boot sequence complete. All systems online.",
-          "Loading user profile: Aman Shrestha [Software Engineer | Cloud Enthusiast]",
+          "Loading user profile: Aman Shrestha [Software Developer | Cloud Enthusiast]",
           "Welcome, Operator. Your terminal awaits. Type 'help' to explore available commands.",
         ];
 
@@ -868,6 +499,7 @@
             finalPromptSpan.textContent = ">";
             finalPromptDiv.appendChild(finalPromptSpan);
             terminalOutput.appendChild(finalPromptDiv);
+            terminalInput.removeAttribute("disabled");
             terminalInput.focus(); // Focus input after all typing animation
           }
         };
