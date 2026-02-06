@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,11 +7,6 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
       rel="stylesheet"
-    />
-    <!-- Favicon using emoji -->
-    <link
-      rel="icon"
-      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>"
     />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css" />
@@ -113,7 +108,7 @@
           "light-mode",
           "red-theme",
           "blue-theme",
-          "yellow-theme"
+          "yellow-theme",
         ); // Remove all specific themes
         if (themeName !== "dark") {
           // Only add if not default dark
@@ -125,32 +120,32 @@
         }
         currentTheme = themeName;
         appendToOutput(
-          `<span class="success-message">> Theme set to '${themeName}'.</span>`
+          `<span class="success-message">> Theme set to '${themeName}'.</span>`,
         );
       }
 
       // Function to display a concise help summary
       function displayInitialHelpSummary() {
         appendToOutput(
-          '<div class="help-heading">=== COMMON COMMANDS ===</div>'
+          '<div class="help-heading">=== COMMON COMMANDS ===</div>',
         );
         appendToOutput(
-          '<span class="help-command">whoami</span><span class="help-description">About me</span>'
+          '<span class="help-command">whoami</span><span class="help-description">About me</span>',
         );
         appendToOutput(
-          '<span class="help-command">skills</span><span class="help-description">My tech stack</span>'
+          '<span class="help-command">skills</span><span class="help-description">My tech stack</span>',
         );
         appendToOutput(
-          '<span class="help-command">contact</span><span class="help-description">Connect with me</span>'
+          '<span class="help-command">contact</span><span class="help-description">Connect with me</span>',
         );
         appendToOutput(
-          '<span class="help-command">cv</span><span class="help-description">My Resume</span>'
+          '<span class="help-command">cv</span><span class="help-description">My Resume</span>',
         );
         appendToOutput(
-          '<span class="help-command">theme &lt;mode&gt;</span><span class="help-description">Change colors (dark, light, red, blue, yellow)</span>'
+          '<span class="help-command">theme &lt;mode&gt;</span><span class="help-description">Change colors (dark, light, red, blue, yellow)</span>',
         );
         appendToOutput(
-          '<span class="help-command">clear</span><span class="help-description">Clear screen</span>'
+          '<span class="help-command">clear</span><span class="help-description">Clear screen</span>',
         );
         appendToOutput("<br>");
         // Removed: appendToOutput('<span class="info-message">Type \'help\' for a complete list of commands.</span>');
@@ -162,50 +157,50 @@
           description: "Show this help message",
           action: () => {
             appendToOutput(
-              '<div class="help-heading">=== AVAILABLE COMMANDS ===</div>'
+              '<div class="help-heading">=== AVAILABLE COMMANDS ===</div>',
             );
             appendToOutput(
-              '<span class="help-command">help</span><span class="help-description">Show this help message</span>'
+              '<span class="help-command">help</span><span class="help-description">Show this help message</span>',
             );
             appendToOutput(
-              '<span class="help-command">clear</span><span class="help-description">Clear the terminal screen</span>'
+              '<span class="help-command">clear</span><span class="help-description">Clear the terminal screen</span>',
             );
             appendToOutput(
-              '<span class="help-command">exit</span><span class="help-description">Simulate exiting AmanOS</span>'
+              '<span class="help-command">exit</span><span class="help-description">Simulate exiting AmanOS</span>',
             );
             appendToOutput(
-              '<span class="help-command">echo &lt;text&gt;</span><span class="help-description">Display the provided text</span>'
+              '<span class="help-command">echo &lt;text&gt;</span><span class="help-description">Display the provided text</span>',
             );
             appendToOutput(
-              '<span class="help-command">date</span><span class="help-description">Show current date and time</span>'
+              '<span class="help-command">date</span><span class="help-description">Show current date and time</span>',
             );
             appendToOutput(
-              '<span class="help-command">theme &lt;mode&gt;</span><span class="help-description">Change terminal theme (dark, light, red, blue, yellow)</span>'
+              '<span class="help-command">theme &lt;mode&gt;</span><span class="help-description">Change terminal theme (dark, light, red, blue, yellow)</span>',
             );
             appendToOutput(
-              '<span class="help-command">whoami</span><span class="help-description">Display information about Aman</span>'
+              '<span class="help-command">whoami</span><span class="help-description">Display information about Aman</span>',
             );
             appendToOutput(
-              '<span class="help-command">skills</span><span class="help-description">List Aman\'s technical skills</span>'
+              '<span class="help-command">skills</span><span class="help-description">List Aman\'s technical skills</span>',
             );
             appendToOutput(
-              '<span class="help-command">contact</span><span class="help-description">Get Aman\'s contact details</span>'
+              '<span class="help-command">contact</span><span class="help-description">Get Aman\'s contact details</span>',
             );
             appendToOutput(
-              '<span class="help-command">cv</span><span class="help-description">Browse Aman\'s Curriculum Vitae</span>'
+              '<span class="help-command">cv</span><span class="help-description">Browse Aman\'s Curriculum Vitae</span>',
             );
             appendToOutput(
-              '<span class="help-command">linkedin</span><span class="help-description">Open Aman\'s LinkedIn profile</span>'
+              '<span class="help-command">linkedin</span><span class="help-description">Open Aman\'s LinkedIn profile</span>',
             );
             appendToOutput(
-              '<span class="help-command">github</span><span class="help-description">Open Aman\'s GitHub profile</span>'
+              '<span class="help-command">github</span><span class="help-description">Open Aman\'s GitHub profile</span>',
             );
 
             appendToOutput(
-              '<span class="help-command">quote</span><span class="help-description">Display a random cookie message (simulated)</span>'
+              '<span class="help-command">quote</span><span class="help-description">Display a random cookie message (simulated)</span>',
             );
             appendToOutput(
-              '<div class="help-heading">Tip: Try some undocumented commands - there might be easter eggs!</div>'
+              '<div class="help-heading">Tip: Try some undocumented commands - there might be easter eggs!</div>',
             );
           },
         },
@@ -215,7 +210,7 @@
             terminalOutput.innerHTML = "";
             appendToOutput(
               '<span class="terminal-prompt">></span> Terminal cleared.',
-              "success-message"
+              "success-message",
             );
           },
         },
@@ -223,7 +218,7 @@
           description: "Simulate exiting terminal mode",
           action: () => {
             appendToOutput(
-              '<span class="terminal-prompt">></span> <span class="info-message">Exiting AmanOS. This is a simulation; in a real application, you might transition to a graphical user interface here.</span>'
+              '<span class="terminal-prompt">></span> <span class="info-message">Exiting AmanOS. This is a simulation; in a real application, you might transition to a graphical user interface here.</span>',
             );
             // In a real app, you might hide the terminal and show a graphical UI
           },
@@ -233,11 +228,11 @@
           action: (args) => {
             if (args.length > 0) {
               appendToOutput(
-                `<span class="info-message">${args.join(" ")}</span>`
+                `<span class="info-message">${args.join(" ")}</span>`,
               );
             } else {
               appendToOutput(
-                '<span class="error-message">Usage: echo &lt;text&gt;</span>'
+                '<span class="error-message">Usage: echo &lt;text&gt;</span>',
               );
             }
           },
@@ -247,7 +242,7 @@
           action: () => {
             const now = new Date();
             appendToOutput(
-              `<span class="info-message">Current Date & Time: ${now.toLocaleString()}</span>`
+              `<span class="info-message">Current Date & Time: ${now.toLocaleString()}</span>`,
             );
           },
         },
@@ -260,10 +255,10 @@
               setTheme(themeMode);
             } else {
               appendToOutput(
-                '<span class="error-message">Invalid theme. Available themes: dark, light, red, blue, yellow.</span>'
+                '<span class="error-message">Invalid theme. Available themes: dark, light, red, blue, yellow.</span>',
               );
               appendToOutput(
-                '<span class="error-message">Usage: theme &lt;mode&gt;</span>'
+                '<span class="error-message">Usage: theme &lt;mode&gt;</span>',
               );
             }
           },
@@ -272,15 +267,14 @@
           description: "Display information about Aman",
           action: () => {
             appendToOutput(
-              '<span class="terminal-prompt">></span> <span class="info-message">Retrieving profile information...</span>'
+              '<span class="terminal-prompt">></span> <span class="info-message">Retrieving profile information...</span>',
             );
             setTimeout(() => {
               appendToOutput(`
                             <span class="info-message">
-                            Software Developer with 2 years of experience on architecting and optimizing scalable web systems. Core
-capabilities include designing databases, crafting high-performance APIs, and implementing complex features like
-third-party integrations, web scraping, and automation. I consistently prioritize security and scalability, often
-working collaboratively to drive technical excellence.
+                            Software Developer with 2+ years of experience in translating product requirements into well-designed software
+systems. Strong in system design, code architecture, APIs, data management, and automation, with a focus on
+scalability, reliability, and long-term maintainability.
                             </span>
                         `);
             }, 500);
@@ -315,20 +309,20 @@ working collaboratively to drive technical excellence.
           description: "Get Aman's contact details",
           action: () => {
             appendToOutput(
-              '<span class="terminal-prompt">></span> <span class="info-message">Displaying contact details for Aman...</span>'
+              '<span class="terminal-prompt">></span> <span class="info-message">Displaying contact details for Aman...</span>',
             );
             setTimeout(() => {
               appendToOutput(
-                '<span class="info-message">Email:</span> <a href="mailto:amanshres007@gmail.com" class="link-style">amanshres007@gmail.com</a>'
+                '<span class="info-message">Email:</span> <a href="mailto:amanshres007@gmail.com" class="link-style">amanshres007@gmail.com</a>',
               );
               appendToOutput(
-                '<span class="info-message">LinkedIn:</span> <a href="https://www.linkedin.com/in/aman-shrestha-117612168/" class="link-style" target="_blank">https://www.linkedin.com/in/aman-shrestha-117612168/</a>'
+                '<span class="info-message">LinkedIn:</span> <a href="https://www.linkedin.com/in/aman-shrestha-117612168/" class="link-style" target="_blank">https://www.linkedin.com/in/aman-shrestha-117612168/</a>',
               );
               appendToOutput(
-                '<span class="info-message">GitHub:</span> <a href="https://github.com/axopher" class="link-style" target="_blank">https://github.com/axopher</a>'
+                '<span class="info-message">GitHub:</span> <a href="https://github.com/axopher" class="link-style" target="_blank">https://github.com/axopher</a>',
               );
               appendToOutput(
-                '<span class="info-message">CV:</span> Type <span class="command-input-line">cv</span> or click the "CV" icon above.'
+                '<span class="info-message">CV:</span> Type <span class="command-input-line">cv</span> or click the "CV" icon above.',
               );
             }, 500);
           },
@@ -337,16 +331,16 @@ working collaboratively to drive technical excellence.
           description: "Browse Aman's Curriculum Vitae",
           action: () => {
             appendToOutput(
-              '<span class="terminal-prompt">></span> <span class="info-message">Browse Aman\'s CV (simulated)...</span>'
+              '<span class="terminal-prompt">></span> <span class="info-message">Browse Aman\'s CV (simulated)...</span>',
             );
           },
           action: () => {
             appendToOutput(
-              '<span class="terminal-prompt">></span> <span class="info-message">Browse Aman\'s CV (simulated)...</span>'
+              '<span class="terminal-prompt">></span> <span class="info-message">Browse Aman\'s CV (simulated)...</span>',
             );
             setTimeout(() => {
               appendToOutput(
-                '<span class="success-message">Redirecting to <a href="AMANSHRESTHACV.pdf" class="link-style" target="_blank">AMANSHRESTHACV.pdf</a>.</span>'
+                '<span class="success-message">Redirecting to <a href="AMANSHRESTHACV.pdf" class="link-style" target="_blank">AMANSHRESTHACV.pdf</a>.</span>',
               );
               window.open("AMANSHRESTHACV.pdf", "_blank"); // Open in new tab
             }, 500);
@@ -356,15 +350,15 @@ working collaboratively to drive technical excellence.
           description: "Open Aman's LinkedIn profile",
           action: () => {
             appendToOutput(
-              '<span class="terminal-prompt">></span> <span class="info-message">Opening Aman\'s LinkedIn profile...</span>'
+              '<span class="terminal-prompt">></span> <span class="info-message">Opening Aman\'s LinkedIn profile...</span>',
             );
             setTimeout(() => {
               appendToOutput(
-                '<span class="success-message">Redirecting to <a href="https://www.linkedin.com/in/aman-shrestha-117612168/" class="link-style" target="_blank">https://www.linkedin.com/in/aman-shrestha-117612168/</a>.</span>'
+                '<span class="success-message">Redirecting to <a href="https://www.linkedin.com/in/aman-shrestha-117612168/" class="link-style" target="_blank">https://www.linkedin.com/in/aman-shrestha-117612168/</a>.</span>',
               );
               window.open(
                 "https://www.linkedin.com/in/aman-shrestha-117612168/",
-                "_blank"
+                "_blank",
               ); // Open in new tab
             }, 500);
           },
@@ -373,11 +367,11 @@ working collaboratively to drive technical excellence.
           description: "Open Aman's GitHub profile",
           action: () => {
             appendToOutput(
-              '<span class="terminal-prompt">></span> <span class="info-message">Opening Aman\'s GitHub profile...</span>'
+              '<span class="terminal-prompt">></span> <span class="info-message">Opening Aman\'s GitHub profile...</span>',
             );
             setTimeout(() => {
               appendToOutput(
-                '<span class="success-message">Redirecting to <a href="https://github.com/axopher" class="link-style" target="_blank">https://github.com/axopher</a>.</span>'
+                '<span class="success-message">Redirecting to <a href="https://github.com/axopher" class="link-style" target="_blank">https://github.com/axopher</a>.</span>',
               );
               window.open("https://github.com/axopher", "_blank"); // Open in new tab
             }, 500);
@@ -399,7 +393,7 @@ working collaboratively to drive technical excellence.
             const randomQuote =
               quotes[Math.floor(Math.random() * quotes.length)];
             appendToOutput(
-              `<span class="info-message">"${randomQuote}"</span>`
+              `<span class="info-message">"${randomQuote}"</span>`,
             );
           },
         },
@@ -417,10 +411,10 @@ working collaboratively to drive technical excellence.
     `;
             appendToOutput(accessDeniedArt);
             appendToOutput(
-              '<span class="error-message">Permission denied. Not everyone gets to be root.</span>'
+              '<span class="error-message">Permission denied. Not everyone gets to be root.</span>',
             );
             appendToOutput(
-              '<span class="error-message">Nice try, but sudo doesn’t mean "super-duper-open".</span>'
+              '<span class="error-message">Nice try, but sudo doesn’t mean "super-duper-open".</span>',
             );
           },
         },
@@ -435,7 +429,7 @@ working collaboratively to drive technical excellence.
           const args = parts.slice(1);
 
           appendToOutput(
-            `<span class="terminal-prompt">></span> <span class="command-input-line">${fullCommand}</span>`
+            `<span class="terminal-prompt">></span> <span class="command-input-line">${fullCommand}</span>`,
           );
           terminalInput.value = ""; // Clear input
 
@@ -445,7 +439,7 @@ working collaboratively to drive technical excellence.
             // Do nothing if command is empty
           } else {
             appendToOutput(
-              `<span class="error-message">Command not found: '${command}'. Type 'help' for a list of commands.</span>`
+              `<span class="error-message">Command not found: '${command}'. Type 'help' for a list of commands.</span>`,
             );
           }
           autoScroll();
